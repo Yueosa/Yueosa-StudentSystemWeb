@@ -16,3 +16,15 @@
 
    ```bash
    git clone https://github.com/Yueosa/Yueosa-StudentSystemWeb.git
+### 运行 Web 服务器
+
+2. **启动 Web 应用程序**  
+   在安装完所有依赖之后，运行 `app.py` 启动 Flask 开发 Web 服务器：
+
+   ```bash
+   python app.py
+3. **开放到局域网**  
+   如果你希望让局域网中的其他设备也能访问这个 Web 服务器，你需要修改 app.py 文件中的 app.run() 配置，将 host 设置为 '0.0.0.0'，这样 Web 服务器就会监听所有的 IP 地址：
+
+   ```python
+   app.run(host='0.0.0.0', port=5000)
