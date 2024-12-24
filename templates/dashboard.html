@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>欢迎访问, {{ username }}</h1>
+    
+    <form action="/logout" method="post">
+        <button type="submit">登出</button>
+    </form>
+
+    {% if is_admin %}
+        <p>当前拥有管理员权限</p>
+        <a href="/admin-panel">用户信息管理</a>
+    {% else %}
+        <p>当前仅拥有查看权限</p>
+    {% endif %}
+
+    <h3>学生信息</h3>
+
+    <form action="/dashboard" method="get">
+        <input type="text" name="name" placeholder="通过姓名查询" value="{{ request.args.get('name', '') }}">
+        <input type="text" name="grade" placeholder="通过性别查询" value="{{ request.args.get('grade', '') }}">
+        <input type="number" name="age" placeholder="通过年龄查询" value="{{ request.args.get('age', '') }}">
+        <button type="submit">查询</button>
+        <a href="/dashboard" class="btn-clear">清空</a>
+    </form>
+    
+    {% if is_admin %}
+    <form action="/add-student" method="post">
+        <input type="text" name="name" placeholder="学生姓名" required>
+        <input type="number" name="age" placeholder="年龄" required>
+        <input type="text" name="grade" placeholder="性别" required>
+        <button type="submit">添加学生信息</button>
+    </form>
+    {% endif %}
+    
+    <table>
+        <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            {% if is_admin %}
+            <th>修改信息</th>
+            {% endif %}
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+            <td>{{ student[3] }}</td>
+            {% if is_admin %}
+            <td>
+                <form action="/update-student/{{ student[0] }}" method="post">
+                    <input type="text" name="name" value="{{ student[1] }}" required>
+                    <input type="number" name="age" value="{{ student[2] }}" required>
+                    <input type="text" name="grade" value="{{ student[3] }}" required>
+                    <button type="submit">更新</button>
+                    <a href="/delete-student/{{ student[0] }}">删除</a>
+                </form>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<button id="backToTop" class="btn-back-top">↑</button>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

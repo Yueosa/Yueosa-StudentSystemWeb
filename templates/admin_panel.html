@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>管理面板</h1>
+    <a href="/dashboard" class="btn-back">返回学生管理</a>
+    
+    <h3>用户管理</h3>
+
+    <form action="/admin-panel" method="get">
+        <input type="text" name="username" placeholder="用户名" value="{{ request.args.get('username', '') }}">
+        <button type="submit">查询</button>
+        <a href="/admin-panel" class="btn-clear">清空</a>
+    </form>
+
+    <table>
+        <tr>
+            <th>用户名</th>
+            <th>管理员权限</th>
+            <th>修改信息</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[3] }}</td>
+            <td>
+                <form action="/update-user/{{ user[0] }}" method="post">
+                    <input type="text" name="username" value="{{ user[1] }}" required>
+                    <input type="password" name="password" placeholder="新密码">
+                    <input type="checkbox" name="is_admin" {% if user[3] == 1 %} checked {% endif %}> 管理员
+                    <button type="submit">更新</button>
+                    <a href="/delete-user/{{ user[0] }}">删除</a>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<button id="backToTop" class="btn-back-top">↑</button>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

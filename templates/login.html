@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container_login">
+    <h1>学生管理系统</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/login" method="post">
+        <label for="username">用户名:</label>
+        <input type="text" name="username" id="username" required>
+        <label for="password">登录密码:</label>
+        <input type="password" name="password" id="password" required>
+        <button type="submit">登入</button>
+    </form>
+
+    <p>还没有账号？<a href="/register">点击注册</a>.</p>
+
+    <div class="admin-info">
+        <h3>管理员账号</h3>
+        <p>用户名: <span class="admin-username">root</span></p>
+        <p>登录密码: <span class="admin-password">Yosa-0516</span></p>
+    </div>
+</div>
+{% endblock %}
