@@ -334,11 +334,11 @@ a:hover {
     }
 
     .btn-back-top {
-        bottom: 15px; /* 较小的底部间距 */
-        right: 15px;  /* 较小的右侧间距 */
-        padding: 8px 12px; /* 调整按钮的内边距 */
-        font-size: 16px; /* 调整字体大小 */
-        width: 50px; /* 限制按钮宽度 */
-        height: 50px; /* 限制按钮高度 */
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        font-size: 16px;
+        width: 50px;
+        height: 50px; 
     }
 }
