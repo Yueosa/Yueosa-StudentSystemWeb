@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = 'yosa0516'
 
 
-# 数据库初始化
 def init_db():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -288,3 +287,4 @@ def logout():
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=5000, debug=True)
+    # 在同一局域网下开放端口，可以用 http://ip:5000 访问
