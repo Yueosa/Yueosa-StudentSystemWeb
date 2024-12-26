@@ -288,3 +288,4 @@ if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=5000, debug=True)
     # 在同一局域网下开放端口，可以用 http://ip:5000 访问
+    # 如果只需要对自己（127.0.0.1）开放，改成app.run()即可
