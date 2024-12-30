@@ -188,10 +188,8 @@ def dashboard():
     grade = request.args.get('grade')
     age = request.args.get('age')
 
-    # 将查询条件传给 get_students 函数
     students = get_students(name=name, grade=grade, age=age)
     return render_template('dashboard.html', username=session['username'], is_admin=session['is_admin'], students=students)
-
 
 
 # 定义管理员面板路由，返回页面为管理员面板页面
