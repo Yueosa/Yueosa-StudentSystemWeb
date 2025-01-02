@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
+
 {% block title %}Admin Panel{% endblock %}
+
 {% block content %}
+
 <div class="container">
     <h1>欢迎，{{ username }}</h1>
     <a href="/dashboard" class="btn-back">返回学生管理</a>
-    
+
     <h3>管理面板</h3>
 
     <form action="/admin-panel" method="get">
@@ -19,6 +22,7 @@
             <th>管理员权限</th>
             <th>修改信息</th>
         </tr>
+
         {% for user in users %}
         <tr>
             <td>{{ user[1] }}</td>
@@ -34,8 +38,10 @@
             </td>
         </tr>
         {% endfor %}
+
     </table>
 </div>
 <button id="backToTop" class="btn-back-top">↑</button>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 {% endblock %}

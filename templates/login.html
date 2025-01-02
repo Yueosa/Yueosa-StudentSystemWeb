@@ -3,17 +3,23 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+
 <div class="container_login">
     <h1>学生管理系统</h1>
 
     {% with messages = get_flashed_messages() %}
+
         {% if messages %}
+
         <ul class="flashes">
+
             {% for message in messages %}
             <li>{{ message }}</li>
             {% endfor %}
+
         </ul>
         {% endif %}
+
     {% endwith %}
 
     <form action="/login" method="post">
@@ -32,4 +38,5 @@
         <p>登录密码: <span class="admin-password">Yosa-0516</span></p>
     </div>
 </div>
+
 {% endblock %}

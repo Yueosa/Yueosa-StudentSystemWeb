@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+
 {% block title %}Dashboard{% endblock %}
+
 {% block content %}
+
 <div class="container">
     <h1>欢迎访问, {{ username }}</h1>
     
@@ -40,16 +43,20 @@
             <th>姓名</th>
             <th>年龄</th>
             <th>性别</th>
+
             {% if is_admin %}
             <th>修改信息</th>
             {% endif %}
+
         </tr>
+
         {% for student in students %}
         <tr>
             <td>{{ student[0] }}</td>
             <td>{{ student[1] }}</td>
             <td>{{ student[2] }}</td>
             <td>{{ student[3] }}</td>
+
             {% if is_admin %}
             <td>
                 <form action="/update-student/{{ student[0] }}" method="post">
@@ -61,10 +68,13 @@
                 </form>
             </td>
             {% endif %}
+
         </tr>
         {% endfor %}
+
     </table>
 </div>
 <button id="backToTop" class="btn-back-top">↑</button>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 {% endblock %}
