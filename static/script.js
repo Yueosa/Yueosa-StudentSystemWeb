@@ -4,11 +4,7 @@ const backToTopButton = document.getElementById("backToTop");
 const scrollableElements = document.querySelectorAll("*");
 
 window.onscroll = function() {
-    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
-    }
+    backToTopButton.style.display = "block";
 };
 
 // 当点击按钮时，所有滚动元素都回到顶部
