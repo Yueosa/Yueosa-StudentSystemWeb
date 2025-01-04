@@ -193,7 +193,7 @@ a:hover {
     /* 文字颜色为白色 */
     color: #fff;
     /* 内边距：上下左右均为15px，确保按钮为正方形 */
-    padding: 15px;
+    padding: 15px 10px;
     /* 圆角边框为50%，使按钮呈现完美的圆形 */
     border-radius: 50%;
     /* 无边框 */
