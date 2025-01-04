@@ -4,7 +4,7 @@ const backToTopButton = document.getElementById("backToTop");
 const scrollableElements = document.querySelectorAll("*");
 
 window.onscroll = function() {
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 0) {
         backToTopButton.style.display = "block";
     } else {
         backToTopButton.style.display = "none";
