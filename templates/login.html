@@ -11,13 +11,55 @@
 
         {% if messages %}
 
-        <ul class="flashes">
+            <ul class="flashes">
 
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
 
-        </ul>
+            </ul>
+
+            <script>
+                window.onload = function() {
+                    if (localStorage.getItem('failedAttempts') === null) {
+                        localStorage.setItem('failedAttempts', 0);
+                    }
+            
+                    let failedAttempts = parseInt(localStorage.getItem('failedAttempts'));
+            
+                    let lastAttemptTime = localStorage.getItem('lastFailedTime');
+            
+                    if (lastAttemptTime && (Date.now() - lastAttemptTime > 60 * 60 * 1000)) {
+                        failedAttempts = 0;
+                        localStorage.setItem('failedAttempts', failedAttempts);
+                        localStorage.removeItem('lastFailedTime');
+                    }
+            
+                    {% if '账户或密码错误！' in messages %}
+                        failedAttempts += 1;
+                        localStorage.setItem('failedAttempts', failedAttempts);
+                    {% endif %}
+            
+                    console.log("当前失败次数: " + failedAttempts);
+            
+                    if (failedAttempts % 3 === 0 && failedAttempts > 0) {
+                        alert("失败次数过多！请一分钟后重试！");
+            
+                        let submitButton = document.querySelector('form button[type="submit"]');
+                        if (submitButton) {
+                            submitButton.disabled = true;
+                            setTimeout(function() {
+                                submitButton.disabled = false;
+                            }, 60000);
+                        } else {
+                            console.error("找不到提交按钮！");
+                        }
+            
+                        localStorage.setItem('lastFailedTime', Date.now());
+                    }
+                };
+            </script>
+            
         {% endif %}
 
     {% endwith %}

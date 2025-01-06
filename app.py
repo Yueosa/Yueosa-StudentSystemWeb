@@ -159,7 +159,7 @@ def login():
             session['is_admin'] = user[3]
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid username or password')
+            flash('账户或密码错误！')
     return render_template('login.html')
 
 
