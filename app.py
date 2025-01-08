@@ -50,7 +50,8 @@ def get_students(name=None, grade=None, age=None):
     cursor.execute(query, params)
     students = cursor.fetchall()
     conn.close()
-    return students
+    num_students = len(students)
+    return students, num_students
 
 
 # 获取用户信息（支持模糊查询）
@@ -188,8 +189,8 @@ def dashboard():
     grade = request.args.get('grade')
     age = request.args.get('age')
 
-    students = get_students(name=name, grade=grade, age=age)
-    return render_template('dashboard.html', username=session['username'], is_admin=session['is_admin'], students=students)
+    students, num_students = get_students(name=name, grade=grade, age=age)
+    return render_template('dashboard.html', username=session['username'], is_admin=session['is_admin'], students=students, num_students=num_students)
 
 
 # 定义管理员面板路由，返回页面为管理员面板页面

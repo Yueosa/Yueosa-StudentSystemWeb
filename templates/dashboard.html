@@ -20,6 +20,8 @@
 
     <h3>学生信息</h3>
 
+    <p>共有 {{ num_students }} 名学生</p>
+
     <form action="/dashboard" method="get">
         <input type="text" name="name" placeholder="通过姓名查询" value="{{ request.args.get('name', '') }}">
         <input type="text" name="grade" placeholder="通过性别查询" value="{{ request.args.get('grade', '') }}">
